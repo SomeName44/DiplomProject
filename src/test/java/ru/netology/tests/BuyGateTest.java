@@ -4,17 +4,15 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SqlHelper;
 import ru.netology.pages.PaymentMethod;
-
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.SqlHelper.*;
+
 
 public class BuyGateTest {
     PaymentMethod paymentMethod = new PaymentMethod();
@@ -23,14 +21,14 @@ public class BuyGateTest {
     public static void setUpAll() {
 
         SelenideLogger.addListener("allure", new AllureSelenide());
-        System.setProperty("webdriver.chrome.driver", "/driver/chromedriver.exe");
+
     }
 
     @BeforeEach
     public void openPage() {
 
         open("http://localhost:8080");
-        driver.get("http://localhost:8080");
+
     }
 
 
@@ -46,16 +44,6 @@ public class BuyGateTest {
     public static void tearDownAll() {
 
         SelenideLogger.removeListener("allure");
-    }
-    private WebDriver driver;
-    @BeforeEach
-    void setUp() {
-        driver = new ChromeDriver();
-    }
-    @AfterEach
-    void tearDown() {
-        driver.quit();
-        driver = null;
     }
 
     @Test
